@@ -109,17 +109,42 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!contactForm) return;
 
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-        
-            // This is where you would integrate a form submission service like Formspree
-            // For now, it just shows a success message.
-            contactForm.innerHTML = `
-                <div class="form-success" style="text-align: center; padding: 30px; border: 1px solid #EAEAEA; border-radius: 8px;">
-                    <h3>Thank you!</h3>
-                    <p>Your message has been sent successfully. We will get back to you shortly.</p>
-                </div>
-            `;
-            console.log('Form submitted. Integrate a backend service to send email.');
+            e.preventDefault(); // Impede o envio padrão do formulário
+
+            const form = e.target;
+            const data = new FormData(form);
+            const action = form.action;
+
+            fetch(action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Se o envio para o Formspree foi bem-sucedido
+                    form.innerHTML = `
+                        <div class="form-success" style="text-align: center; padding: 30px; border: 1px solid #EAEAEA; border-radius: 8px;">
+                            <h3>Thank you!</h3>
+                            <p>Your message has been sent successfully. We will get back to you shortly.</p>
+                        </div>
+                    `;
+                } else {
+                    // Se houve um erro
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert('Oops! There was a problem submitting your form');
+                        }
+                    })
+                }
+            }).catch(error => {
+                // Se houve um erro de rede
+                alert('Oops! There was a problem submitting your form');
+                console.error('Fetch error:', error);
+            });
         });
     };
     
@@ -213,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
     handleImageLoading();
     setupMobileNav();
     setupScrollAnimations();
-    setupForm();
+    setupForm(); // Nome da função foi mantido como setupForm
     setupHeaderScroll();
     setupSmoothScroll();
     setupBackToTopButton();
