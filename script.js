@@ -104,29 +104,22 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.forEach(element => { observer.observe(element); });
     };
     
-    // Form Validation
-    const setupFormValidation = () => {
+    // Form Validation and Submission
+    const setupForm = () => {
         if (!contactForm) return;
-        
-        function validateField(field) {
-            // Field validation logic (remains the same)
-            return true; // Simplified for brevity, original logic is sound
-        }
-        
+
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            let isValid = true;
-            // Full validation logic (remains the same)
-            
-            if (isValid) {
-                contactForm.innerHTML = `
-                    <div class="form-success" style="text-align: center; padding: 30px; border: 1px solid #EAEAEA; border-radius: 8px;">
-                        <h3>Thank you!</h3>
-                        <p>Your message has been sent successfully. We will get back to you shortly.</p>
-                    </div>
-                `;
-                console.log('Form submitted');
-            }
+            e.preventDefault(); 
+        
+            // This is where you would integrate a form submission service like Formspree
+            // For now, it just shows a success message.
+            contactForm.innerHTML = `
+                <div class="form-success" style="text-align: center; padding: 30px; border: 1px solid #EAEAEA; border-radius: 8px;">
+                    <h3>Thank you!</h3>
+                    <p>Your message has been sent successfully. We will get back to you shortly.</p>
+                </div>
+            `;
+            console.log('Form submitted. Integrate a backend service to send email.');
         });
     };
     
@@ -220,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
     handleImageLoading();
     setupMobileNav();
     setupScrollAnimations();
-    // setupFormValidation(); // Full form validation logic from original script is fine
+    setupForm();
     setupHeaderScroll();
     setupSmoothScroll();
     setupBackToTopButton();

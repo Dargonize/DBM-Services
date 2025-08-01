@@ -47,6 +47,14 @@ a:hover {
     color: var(--primary-dark);
 }
 
+.top-contact-bar a {
+    color: var(--text-color);
+}
+
+.top-contact-bar a:hover {
+    color: var(--primary-color);
+}
+
 ul {
     list-style: none;
 }
@@ -146,8 +154,7 @@ nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
 .section-title p { font-size: 18px; color: var(--text-color); max-width: 700px; margin: 0 auto; }
 
 .services-grid, .why-us-grid, .testimonials-grid { display: grid; gap: 30px; }
-/* --- ALTERAÇÃO AQUI --- */
-.services-grid { grid-template-columns: repeat(2, 1fr); } /* Garante 2 colunas em telas maiores */
+.services-grid { grid-template-columns: repeat(2, 1fr); }
 .why-us-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .testimonials-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
 
@@ -236,11 +243,32 @@ footer { background-color: var(--section-bg-color); color: var(--text-color); pa
     .top-contact-bar, header { position: relative; top: 0; }
     header { top: 0; }
     .hero { height: auto; min-height: 400px; padding: 60px 0; }
-    .hero h1 { font-size: 36px; }
     section { padding: 60px 0; }
     .about-container { grid-template-columns: 1fr; }
     .about-img { height: 300px; margin-bottom: 30px; }
     .footer-content { grid-template-columns: 1fr; }
-    /* --- ALTERAÇÃO AQUI --- */
-    .services-grid { grid-template-columns: 1fr; } /* Garante 1 coluna em telas menores */
+    .services-grid { grid-template-columns: 1fr; } 
+
+    /* --- MELHORIAS MOBILE ADICIONAIS --- */
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero .btn {
+        width: 90%;
+        max-width: 300px;
+        padding: 15px 20px;
+    }
+
+    .section-title h2 {
+        font-size: 28px;
+    }
 }
