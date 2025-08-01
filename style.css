@@ -178,7 +178,7 @@ nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
 .testimonial-card h4 { color: var(--heading-color); font-weight: 600; font-style: normal; }
 
 .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-.about-img { height: 450px; background-size: cover; background-position: center; border-radius: 8px; background-color: #E0E0E0; background-image: url('imagens/limpeza-2.png'); /* Fallback */ }
+.about-img { height: 450px; background-size: cover; background-position: center; border-radius: 8px; background-color: #E0E0E0; /* Fallback */ }
 .about-content h3 { font-size: 28px; }
 
 #contact { background-color: var(--background-color); }
@@ -249,7 +249,13 @@ footer { background-color: var(--section-bg-color); color: var(--text-color); pa
     .footer-content { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; } 
 
-    /* --- MELHORIAS MOBILE ADICIONAIS --- */
+    /* --- CORREÇÃO E MELHORIAS MOBILE --- */
+    .top-contact-bar .container {
+        flex-direction: column; /* Empilha os itens verticalmente */
+        gap: 8px;              /* Reduz o espaço entre eles */
+        align-items: center;   /* Centraliza os itens */
+    }
+
     body {
         font-size: 16px;
     }
